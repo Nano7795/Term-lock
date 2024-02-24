@@ -29,7 +29,6 @@ chmod 777 .bashrc
 rm -rf /data/data/com.termux/files/usr/etc/motd
 cd ~/
 echo "
-
 Welcome to Termux!
 
 Community forum: https://termux.com/community
