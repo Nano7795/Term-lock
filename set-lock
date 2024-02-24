@@ -1,0 +1,58 @@
+#!/bin/bash
+cd ~/
+rm -rf /data/data/com.termux/files/usr/Term-lock/password.txt
+echo -n "Enter password:"
+read input1
+
+match=false
+
+while [ "$match" = false ]; do
+    echo -n "Confirm password:"
+    read input2
+
+    if [ "$input1" = "$input2" ]; then
+        echo "$input1" >> password.txt
+        match=true
+    else
+        echo "Passwords not match. Please enter again."
+    fi
+done
+
+cd ~/
+mv password.txt /data/data/com.termux/files/usr/Term-lock/
+cd ~/
+cd /data/data/com.termux/files/usr/Term-lock/
+cp required ~/
+cd ~/
+mv required .bashrc
+chmod 777 .bashrc
+rm -rf /data/data/com.termux/files/usr/etc/motd
+cd ~/
+echo "
+
+Welcome to Termux!
+
+Community forum: https://termux.com/community
+Gitter chat:     https://gitter.im/termux/termux
+IRC channel:     #termux on libera.chat
+
+Working with packages:
+
+ * Search packages:   pkg search <query>
+ * Install a package: pkg install <package>
+ * Upgrade packages:  pkg upgrade
+
+Subscribing to additional repositories:
+
+ * Root:     pkg install root-repo
+ * X11:      pkg install x11-repo
+
+Report issues at https://termux.com/issues
+
+" >> motd
+
+mv motd /data/data/com.termux/files/usr/Term-lock/
+
+clear
+cd ~/
+echo "Termux Locked by Term-lock"

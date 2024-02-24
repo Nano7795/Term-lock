@@ -1,0 +1,43 @@
+#!/bin/bash
+trap '' SIGINT
+
+# Path to the password file
+password_file="/data/data/com.termux/files/usr/Term-lock/password.txt"
+
+# Check if the password file exists
+if [ ! -f "$password_file" ]; then
+    exit 1  # Exit the script if the file is not found
+fi
+
+# Read the password from the file and remove leading/trailing whitespaces
+password=$(< "$password_file")
+password=$(echo "$password" | tr -d '[:space:]')
+
+# Check if the password is empty or contains only spaces
+if [ -z "$password" ]; then
+    exit 1  # Exit the script if the password is empty
+fi
+
+# Prompt the user for input and remove leading/trailing whitespaces
+figlet Term-lock | lolcat
+echo -e "\t\t\t##########################"
+echo -e "\t\t\t# Protected by Term-lock #"
+echo -e "\t\t\t##########################"
+echo -e -n "\n\n\n🔒Enter the password: "
+read -r input_password
+input_password=$(echo "$input_password" | tr -d '[:space:]')
+
+# Check if the entered password matches the one from the file
+if [ "$input_password" != "$password" ]; then
+    echo "Incorrect password!"
+    kill -9 $PPID
+fi
+
+#for banner 
+#!/bin/bash
+clear
+motd="/data/data/com.termux/files/usr/Term-lock/motd"
+
+if [ -f "$motd" ]; then
+    cat "$motd"
+fi
