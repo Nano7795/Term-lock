@@ -5,7 +5,6 @@ rm -rf /data/data/com.termux/files/usr/Term-lock/password.txt
 rm -rf /data/data/com.termux/files/usr/Term-lock/motd
 cd ~/
 echo "
-
 Welcome to Termux!
 
 Community forum: https://termux.com/community
