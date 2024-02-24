@@ -11,5 +11,6 @@ cd ~/
 mkdir -p /data/data/com.termux/files/usr/Term-lock
 mv required /data/data/com.termux/files/usr/Term-lock
 cd ~/
-clear
 cd Term-lock
+rm -rf setup.sh
+clear
